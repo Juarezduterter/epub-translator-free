@@ -6,6 +6,7 @@ Handles reading, parsing, and writing ePub files while preserving structure.
 import os
 import tempfile
 from typing import List, Dict, Tuple
+import ebooklib
 from ebooklib import epub
 from bs4 import BeautifulSoup
 import logging
@@ -58,7 +59,7 @@ class EPubParser:
         self.translatable_items = []
 
         for item in self.book.get_items():
-            if item.get_type() == epub.ITEM_DOCUMENT:
+            if item.get_type() == ebooklib.ITEM_DOCUMENT:
                 content = item.get_content()
                 soup = BeautifulSoup(content, 'lxml')
 
